@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <contextName>logback</contextName>
+    <!--使用一个变量属性值来必须日志的路径-->
+    <property name="log.path" value="E://functionalTest//logback//sell//log" />
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d{HH:mm:ss.SSSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <!--info 级别日志输出到文件-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+<!--            如果匹配到error 级别的日志就将其排除否则 接收-->
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+<!--        轮询策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!--            日志存储路径-->
+            <fileNamePattern>${log.path}/info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--warn 级别日志 输出到文件-->
+    <appender name="fileWarnLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <!--        轮询策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--            日志存储路径-->
+            <fileNamePattern>${log.path}/warn.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--error 级别日志 输出到文件-->
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <!--        轮询策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--            日志存储路径-->
+            <fileNamePattern>${log.path}/error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+
+    <root level="info">
+<!--    定义控制台日志的输出-->
+        <appender-ref ref = "consoleLog"/>
+<!--    定义文件日志的输出-->
+        <appender-ref ref = "fileInfoLog"/>
+        <appender-ref ref = "fileErrorLog"/>
+        <appender-ref ref = "fileWarnLog"/>
+    </root>
+</configuration>

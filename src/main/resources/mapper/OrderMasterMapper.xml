@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.warrior.sell.mapper.OrderMasterMapper">
+  <resultMap id="BaseResultMap" type="com.warrior.sell.entity.OrderMaster">
+    <!--@mbg.generated-->
+    <!--@Table order_master-->
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="buyer_name" jdbcType="VARCHAR" property="buyerName" />
+    <result column="buyer_phone" jdbcType="VARCHAR" property="buyerPhone" />
+    <result column="buyer_address" jdbcType="VARCHAR" property="buyerAddress" />
+    <result column="buyer_openid" jdbcType="VARCHAR" property="buyerOpenid" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    order_id, buyer_name, buyer_phone, buyer_address, buyer_openid, order_status, pay_status, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from order_master
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from order_master
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.warrior.sell.entity.OrderMaster">
+    <!--@mbg.generated-->
+    insert into order_master (order_id, buyer_name, buyer_phone, 
+      buyer_address, buyer_openid, order_status, 
+      pay_status, create_time, update_time
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{buyerName,jdbcType=VARCHAR}, #{buyerPhone,jdbcType=VARCHAR}, 
+      #{buyerAddress,jdbcType=VARCHAR}, #{buyerOpenid,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, 
+      #{payStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.warrior.sell.entity.OrderMaster">
+    <!--@mbg.generated-->
+    insert into order_master
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="buyerName != null">
+        buyer_name,
+      </if>
+      <if test="buyerPhone != null">
+        buyer_phone,
+      </if>
+      <if test="buyerAddress != null">
+        buyer_address,
+      </if>
+      <if test="buyerOpenid != null">
+        buyer_openid,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null">
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null">
+        #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null">
+        #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerOpenid != null">
+        #{buyerOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.warrior.sell.entity.OrderMaster">
+    <!--@mbg.generated-->
+    update order_master
+    <set>
+      <if test="buyerName != null">
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null">
+        buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null">
+        buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerOpenid != null">
+        buyer_openid = #{buyerOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.warrior.sell.entity.OrderMaster">
+    <!--@mbg.generated-->
+    update order_master
+    set buyer_name = #{buyerName,jdbcType=VARCHAR},
+      buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+      buyer_openid = #{buyerOpenid,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into order_master
+    (order_id, buyer_name, buyer_phone, buyer_address, buyer_openid, order_status, pay_status, 
+      create_time, update_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.orderId,jdbcType=VARCHAR}, #{item.buyerName,jdbcType=VARCHAR}, #{item.buyerPhone,jdbcType=VARCHAR}, 
+        #{item.buyerAddress,jdbcType=VARCHAR}, #{item.buyerOpenid,jdbcType=VARCHAR}, #{item.orderStatus,jdbcType=TINYINT}, 
+        #{item.payStatus,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+
+
+<!--auto generated by MybatisCodeHelper on 2020-08-04-->
+  <select id="findByBuyerOpenid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from order_master
+    where buyer_openid=#{buyerOpenid,jdbcType=VARCHAR}
+  </select>
+
+<!--auto generated by MybatisCodeHelper on 2020-08-04-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from order_master
+  </select>
+
+</mapper>
