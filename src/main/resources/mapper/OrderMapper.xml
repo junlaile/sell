@@ -25,17 +25,27 @@
     </resultMap>
 
     <select id="findByMasterForOrderId" resultMap="OrderResultMap">
-        select od.detail_id,
-               od.order_id,
-               od.product_id,
-               od.product_name,
-               od.product_price,
-               od.product_quantity,
-               od.product_icon,
-               od.create_time,
-               od.update_time
+        select om.order_id
+        , om.buyer_name
+        , om.buyer_phone
+        , om.buyer_address
+        , om.buyer_openid
+        , om.order_amount
+        , om.order_status
+        , om.pay_status
+        , om.create_time
+        , om.update_time
+        , od.detail_id
+        , od.order_id
+        , od.product_id
+        , od.product_name
+        , od.product_price
+        , od.product_quantity
+        , od.product_icon
+        , od.create_time
+        , od.update_time
         from order_master om
-                     join order_detail od on om.order_id = od.order_id
+        left join order_detail od on om.order_id = od.order_id
         where om.order_id = #{orderId,jdbcType=VARCHAR};
     </select>
 

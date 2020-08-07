@@ -1,9 +1,9 @@
 package com.warrior.sell.mapper;
-import java.util.Date;
 
 import com.warrior.sell.entity.OrderMaster;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OrderMasterMapper {
     int deleteByPrimaryKey(String orderId);
@@ -13,9 +13,6 @@ public interface OrderMasterMapper {
     int insertSelective(OrderMaster record);
 
     OrderMaster selectByPrimaryKey(String orderId);
-
-    List<OrderMaster> findByBuyerOpenid(@Param("buyerOpenid")String buyerOpenid);
-
 //    List<OrderMaster> findAll();
 
     int updateByPrimaryKeySelective(OrderMaster record);
@@ -23,4 +20,6 @@ public interface OrderMasterMapper {
     int updateByPrimaryKey(OrderMaster record);
 
     int batchInsert(@Param("list") List<OrderMaster> list);
+
+    List<OrderMaster> findByBuyerOpenid(@Param("buyerOpenid") String buyerOpenid);
 }

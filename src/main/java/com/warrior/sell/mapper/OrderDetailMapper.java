@@ -4,6 +4,9 @@ import com.warrior.sell.entity.OrderDetail;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author jun
+ */
 public interface OrderDetailMapper {
     int deleteByPrimaryKey(String detailId);
 

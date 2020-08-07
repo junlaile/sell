@@ -1,14 +1,21 @@
 package com.warrior.sell.service.impl;
 
+import com.warrior.sell.constant.ResultEnum;
 import com.warrior.sell.dao.ProductInfoDao;
+import com.warrior.sell.dto.CartDTO;
 import com.warrior.sell.entity.ProductInfo;
+import com.warrior.sell.exception.SellException;
 import com.warrior.sell.service.ProductService;
 import com.warrior.sell.constant.ProductStatusEnum;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author jun
+ */
 @Service
 public class ProductServiceImpl implements ProductService {
     @Resource
@@ -42,6 +49,30 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductInfo> findAll() {
         return productInfoDao.findAll();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int increaseStock(List<CartDTO> cartDTOList) {
+
+        return 0;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void decreaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList) {
+            ProductInfo productInfo = findByPrimaryKey(cartDTO.getProductId());
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            int result = productInfo.getProductStock() - cartDTO.getProductQuantity();
+            if (result < 0) {
+                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+            productInfo.setProductStock(result);
+            productInfoDao.updateByPrimaryKey(productInfo);
+        }
     }
 
     @Override

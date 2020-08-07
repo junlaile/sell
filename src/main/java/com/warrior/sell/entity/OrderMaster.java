@@ -1,8 +1,6 @@
 package com.warrior.sell.entity;
 
-import com.warrior.sell.constant.OrderStatusEnum;
-import com.warrior.sell.constant.PayStatusEnum;
-
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -32,14 +30,19 @@ public class OrderMaster {
     private String buyerOpenid;
 
     /**
+     * 订单总金额
+     */
+    private BigDecimal orderAmount;
+
+    /**
      * 订单状态，默认为0 新下单
      */
-    private Byte orderStatus = OrderStatusEnum.NEW.getCode();
+    private Byte orderStatus;
 
     /**
      * 支付状态，默认0未支付
      */
-    private Byte payStatus = PayStatusEnum.WAIT.getCode();
+    private Byte payStatus;
 
     /**
      * 创建时间
@@ -91,6 +94,14 @@ public class OrderMaster {
         this.buyerOpenid = buyerOpenid;
     }
 
+    public BigDecimal getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(BigDecimal orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
     public Byte getOrderStatus() {
         return orderStatus;
     }
@@ -125,11 +136,13 @@ public class OrderMaster {
 
     @Override
     public String toString() {
-        return "OrderMaster{" + "orderId='" + orderId + '\'' +
+        return "OrderMaster{" +
+                "orderId='" + orderId + '\'' +
                 ", buyerName='" + buyerName + '\'' +
                 ", buyerPhone='" + buyerPhone + '\'' +
                 ", buyerAddress='" + buyerAddress + '\'' +
                 ", buyerOpenid='" + buyerOpenid + '\'' +
+                ", orderAmount=" + orderAmount +
                 ", orderStatus=" + orderStatus +
                 ", payStatus=" + payStatus +
                 ", createTime=" + createTime +

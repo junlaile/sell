@@ -1,7 +1,5 @@
 package com.warrior.sell.dto;
 
-import com.warrior.sell.constant.OrderStatusEnum;
-import com.warrior.sell.constant.PayStatusEnum;
 import com.warrior.sell.entity.OrderDetail;
 
 import java.util.Date;
@@ -10,6 +8,7 @@ import java.util.List;
 /**
  * 关联 orderDetailDao
  * 一对多查询
+ * @author jun
  */
 public class OrderDTO {
     private String orderId;

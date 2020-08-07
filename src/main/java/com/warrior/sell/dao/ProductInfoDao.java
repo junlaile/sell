@@ -1,10 +1,12 @@
 package com.warrior.sell.dao;
 
 import com.warrior.sell.entity.ProductInfo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * @author jun
+ */
 public interface ProductInfoDao {
     int deleteByPrimaryKey(String productId);
 
@@ -22,5 +24,5 @@ public interface ProductInfoDao {
 
     int updateByPrimaryKey(ProductInfo record);
 
-    int batchInsert(@Param("list") List<ProductInfo> list);
+    int batchInsert(List<ProductInfo> list);
 }

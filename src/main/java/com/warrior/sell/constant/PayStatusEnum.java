@@ -2,9 +2,16 @@ package com.warrior.sell.constant;
 
 /**
  * 支付状态
+ * @author jun
  */
 public enum PayStatusEnum {
+    /**
+     * 等待支付
+     */
     WAIT((byte)0,"等待支付"),
+    /**
+     * 支付成功
+     */
     SUCCESS((byte)1,"支付成功"),
     ;
     /**

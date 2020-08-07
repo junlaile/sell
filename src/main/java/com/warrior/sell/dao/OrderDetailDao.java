@@ -1,10 +1,12 @@
 package com.warrior.sell.dao;
 
 import com.warrior.sell.entity.OrderDetail;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+/**
+ * @author jun
+ */
 @Repository
 public interface OrderDetailDao {
     int deleteByPrimaryKey(String detailId);
@@ -15,9 +17,11 @@ public interface OrderDetailDao {
 
     OrderDetail selectByPrimaryKey(String detailId);
 
+    List<OrderDetail> findByOrderId(String orderId);
+
     int updateByPrimaryKeySelective(OrderDetail record);
 
     int updateByPrimaryKey(OrderDetail record);
 
-    int batchInsert(@Param("list") List<OrderDetail> list);
+    int batchInsert(List<OrderDetail> list);
 }

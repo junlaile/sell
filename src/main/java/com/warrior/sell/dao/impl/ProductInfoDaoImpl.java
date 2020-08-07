@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author jun
+ */
 @Repository
 public class ProductInfoDaoImpl implements ProductInfoDao {
     @Resource

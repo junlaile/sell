@@ -34,6 +34,11 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
     }
 
     @Override
+    public List<OrderDetail> findByOrderId(String orderId) {
+        return orderDetailMapper.findByOrderId(orderId);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(OrderDetail record) {
         return orderDetailMapper.updateByPrimaryKeySelective(record);
     }

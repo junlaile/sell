@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 @SpringBootTest
-public class OrderDetailTest {
+class OrderDetailTest {
     @Resource
     private OrderDetailDao orderDetailDao;
 
