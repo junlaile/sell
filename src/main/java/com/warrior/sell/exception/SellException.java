@@ -13,6 +13,11 @@ public class SellException extends RuntimeException {
         this.code = resultEnum.getCode();
     }
 
+    public SellException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
     public int getCode() {
         return code;
     }

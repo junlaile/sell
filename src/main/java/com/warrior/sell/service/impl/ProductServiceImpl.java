@@ -54,8 +54,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int increaseStock(List<CartDTO> cartDTOList) {
-
-        return 0;
+        int size = -1;
+        for (int i = 0; i < cartDTOList.size(); i++) {
+            size += productInfoDao.updateProductStockUpByProductId(cartDTOList.get(i));
+            if (size != i) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+        }
+        return size;
     }
 
     @Override

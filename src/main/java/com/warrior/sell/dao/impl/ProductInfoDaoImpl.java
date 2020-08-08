@@ -1,6 +1,7 @@
 package com.warrior.sell.dao.impl;
 
 import com.warrior.sell.dao.ProductInfoDao;
+import com.warrior.sell.dto.CartDTO;
 import com.warrior.sell.entity.ProductInfo;
 import com.warrior.sell.mapper.ProductInfoMapper;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,11 @@ public class ProductInfoDaoImpl implements ProductInfoDao {
     @Override
     public int updateByPrimaryKey(ProductInfo record) {
         return productInfoMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public int updateProductStockUpByProductId(CartDTO cartDTO) {
+        return productInfoMapper.updateProductStockUpByProductId(cartDTO);
     }
 
     @Override

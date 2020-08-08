@@ -2,6 +2,7 @@ package com.warrior.sell.dto;
 
 /**
  * 购物车
+ * @author jun
  */
 public class CartDTO {
     /**

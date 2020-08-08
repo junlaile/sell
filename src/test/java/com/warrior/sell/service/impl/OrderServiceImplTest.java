@@ -1,5 +1,6 @@
 package com.warrior.sell.service.impl;
 
+import com.warrior.sell.dto.CartDTO;
 import com.warrior.sell.dto.OrderDTO;
 import com.warrior.sell.entity.OrderDetail;
 import com.warrior.sell.entity.OrderMaster;
@@ -50,8 +51,27 @@ class OrderServiceTest {
 
     @Test
     void findAllDemo1(){
-        List<OrderDTO> list = orderService.findList("1",0,1);
+        List<OrderDTO> list = orderService.findList("1");
         System.out.println(list);
     }
 
+    @Test
+    void updateCancel(){
+        OrderDTO one = orderService.findOne("1291623458953867264");
+        orderService.cancel(one);
+    }
+
+    @Test
+    void updateFinish(){
+        OrderDTO one = orderService.findOne("1291623458953867264");
+        OrderDTO finish = orderService.finish(one);
+        System.out.println(finish.getOrderStatus());
+    }
+
+    @Test
+    void paid(){
+        OrderDTO one = orderService.findOne("1291623458953867264");
+        OrderDTO paid = orderService.paid(one);
+        System.out.println(paid.getPayStatus());
+    }
 }

@@ -1,8 +1,12 @@
 package com.warrior.sell.mapper;
+
 import java.util.Collection;
 
+import com.warrior.sell.dto.CartDTO;
 import com.warrior.sell.entity.ProductInfo;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -17,7 +21,7 @@ public interface ProductInfoMapper {
 
     ProductInfo selectByPrimaryKey(String productId);
 
-    List<ProductInfo> findByProductStatus(@Param("productStatus")Byte productStatus);
+    List<ProductInfo> findByProductStatus(@Param("productStatus") Byte productStatus);
 
     List<ProductInfo> findAll();
 
@@ -25,16 +29,14 @@ public interface ProductInfoMapper {
 
     int updateByPrimaryKey(ProductInfo record);
 
-    批量修改
-    //<update id="batchUpdate" parameterType="java.util.List">
-    //  <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-    //   update test
-    //      <set>
-    //      test=#{item.test}+1
-    //      </set>
-    //      where id = #{item.id}
-    //  </foreach>
-    //</update>
+    /**
+     * 增加库存 库存
+     *
+     * @param cartDTO 购物车对象
+     * @return 修改条数
+     */
+    int updateProductStockUpByProductId(@Param("cartDTO")CartDTO cartDTO);
+
 
     int batchInsert(@Param("list") List<ProductInfo> list);
 

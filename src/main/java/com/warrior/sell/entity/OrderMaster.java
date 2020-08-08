@@ -36,6 +36,8 @@ public class OrderMaster {
 
     /**
      * 订单状态，默认为0 新下单
+     * 1 下单完结
+     * 2 取消下单
      */
     private Byte orderStatus;
 

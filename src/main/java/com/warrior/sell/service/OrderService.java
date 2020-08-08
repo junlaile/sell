@@ -13,8 +13,9 @@ public interface OrderService {
      * 创建订单
      *
      * @param orderDTO 传输层封装对象
+     * @return orderId
      */
-    void create(OrderDTO orderDTO);
+    String create(OrderDTO orderDTO);
 
     /**
      * 查询单个订单

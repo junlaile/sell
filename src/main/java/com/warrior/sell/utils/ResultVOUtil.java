@@ -4,6 +4,7 @@ import com.warrior.sell.vo.ResultVO;
 
 /**
  * 返回 ResultVO 的状态值
+ * @author jun
  */
 public class ResultVOUtil {
     public static <DATA> ResultVO<DATA> success(DATA data) {
@@ -18,7 +19,7 @@ public class ResultVOUtil {
         return success(null);
     }
 
-    public static ResultVO<Object> fail(Integer code, String msg) {
+    public static ResultVO<Object> error(Integer code, String msg) {
         ResultVO<Object> resultVO = new ResultVO<>();
         resultVO.setCode(code);
         resultVO.setMsg(msg);
