@@ -1,15 +1,24 @@
 package com.warrior.sell.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.warrior.sell.entity.OrderDetail;
+import com.warrior.sell.utils.serializer.DateToSecond;
+import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 
 /**
  * 关联 orderDetailDao
  * 一对多查询
+ *
  * @author jun
  */
+@Data
 public class OrderDTO {
     private String orderId;
 
@@ -34,6 +43,11 @@ public class OrderDTO {
     private String buyerOpenid;
 
     /**
+     * 订单总金额
+     */
+    private BigDecimal orderAmount;
+
+    /**
      * 订单状态，默认为0 新下单
      */
     private Byte orderStatus;
@@ -46,99 +60,19 @@ public class OrderDTO {
     /**
      * 创建时间
      */
+    @JsonSerialize(using = DateToSecond.class)
     private Date createTime;
 
     /**
      * 修改时间
      */
+    @JsonSerialize(using = DateToSecond.class)
     private Date updateTime;
-
 
     /**
      * 关联详细订单表
      */
     private List<OrderDetail> orderDetailList;
-
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
-
-    public String getBuyerPhone() {
-        return buyerPhone;
-    }
-
-    public void setBuyerPhone(String buyerPhone) {
-        this.buyerPhone = buyerPhone;
-    }
-
-    public String getBuyerAddress() {
-        return buyerAddress;
-    }
-
-    public void setBuyerAddress(String buyerAddress) {
-        this.buyerAddress = buyerAddress;
-    }
-
-    public String getBuyerOpenid() {
-        return buyerOpenid;
-    }
-
-    public void setBuyerOpenid(String buyerOpenid) {
-        this.buyerOpenid = buyerOpenid;
-    }
-
-    public Byte getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(Byte orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public Byte getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Byte payStatus) {
-        this.payStatus = payStatus;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public List<OrderDetail> getOrderDetailList() {
-        return orderDetailList;
-    }
-
-    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
-    }
 
     @Override
     public String toString() {
@@ -148,6 +82,7 @@ public class OrderDTO {
                 ", buyerPhone='" + buyerPhone + '\'' +
                 ", buyerAddress='" + buyerAddress + '\'' +
                 ", buyerOpenid='" + buyerOpenid + '\'' +
+                ", orderAmount=" + orderAmount +
                 ", orderStatus=" + orderStatus +
                 ", payStatus=" + payStatus +
                 ", createTime=" + createTime +

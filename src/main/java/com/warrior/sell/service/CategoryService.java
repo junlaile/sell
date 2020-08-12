@@ -1,17 +1,19 @@
 package com.warrior.sell.service;
 
-import com.warrior.sell.entity.OrderMaster;
 import com.warrior.sell.entity.ProductCategory;
 
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author jun
+ */
 public interface CategoryService {
     List<ProductCategory> selectAll();
 
     ProductCategory selectOne(int categoryId);
 
-    ProductCategory findByCategoryType(int CategoryTypeNumber);
+    ProductCategory findByCategoryType(int categoryTypeNumber);
 
     List<ProductCategory> findByCategoryTypeIn(Collection<Integer> categoryTypeCollection);
 

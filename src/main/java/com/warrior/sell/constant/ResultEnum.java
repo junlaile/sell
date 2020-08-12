@@ -45,6 +45,21 @@ public enum ResultEnum {
      * 购物车为空
      */
     CART_ISEMPTY(518, "购物车为空"),
+
+    /**
+     * 该订单不属于当前用户
+     */
+    ORDER_OWNER_ERROR(519, "该订单不属于当前用户"),
+
+    /**
+     * 微信公众账号方法错误
+     */
+    WECHAT_MP_ERROR(520, "微信公众账号方法错误"),
+
+    /**
+     * 微信编码错误
+     */
+    WECHAT_MP_ENCODE_ERROR(601, "微信编码错误"),
     ;
 
     private final int code;

@@ -24,8 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
         return productCategoryDao.selectOne(categoryId);
     }
 
-    public ProductCategory findByCategoryType(int CategoryTypeNumber) {
-        return productCategoryDao.findByCategoryType(CategoryTypeNumber);
+    @Override
+    public ProductCategory findByCategoryType(int categoryTypeNumber) {
+        return productCategoryDao.findByCategoryType(categoryTypeNumber);
     }
 
     @Override

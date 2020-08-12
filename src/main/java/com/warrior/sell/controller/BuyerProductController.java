@@ -3,8 +3,6 @@ package com.warrior.sell.controller;
 import com.warrior.sell.dto.PCategoryMergePInfoDTO;
 import com.warrior.sell.entity.ProductInfo;
 import com.warrior.sell.service.CategoryMergeProductService;
-import com.warrior.sell.service.CategoryService;
-import com.warrior.sell.service.ProductService;
 import com.warrior.sell.utils.ResultVOUtil;
 import com.warrior.sell.vo.ProductInfoVO;
 import com.warrior.sell.vo.ProductVO;
@@ -20,14 +18,11 @@ import java.util.List;
 
 /**
  * 买家商品
+ * @author jun
  */
 @RestController
 @RequestMapping("/buyer/product")
 public class BuyerProductController {
-    @Resource
-    private ProductService productService;
-    @Resource
-    private CategoryService categoryService;
     @Resource
     private CategoryMergeProductService categoryMergeProductService;
 
@@ -43,12 +38,12 @@ public class BuyerProductController {
         // 使用 多表关联查询 并封装数据
         List<PCategoryMergePInfoDTO> upList = categoryMergeProductService.findUpList();
         List<ProductVO> productVOList = new ArrayList<>();
-        for (PCategoryMergePInfoDTO pCategoryMergePInfoDTO : upList) {
+        for (PCategoryMergePInfoDTO infoDTO : upList) {
             ProductVO productVO = new ProductVO();
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
-            productVO.setCategoryName(pCategoryMergePInfoDTO.getCategoryName());
-            productVO.setCategoryType(pCategoryMergePInfoDTO.getCategoryType());
-            for (ProductInfo productInfo : pCategoryMergePInfoDTO.getProductInfoList()) {
+            productVO.setCategoryName(infoDTO.getCategoryName());
+            productVO.setCategoryType(infoDTO.getCategoryType());
+            for (ProductInfo productInfo : infoDTO.getProductInfoList()) {
                 ProductInfoVO productInfoVO = new ProductInfoVO();
                 BeanUtils.copyProperties(productInfo, productInfoVO);
                 productInfoVOList.add(productInfoVO);
